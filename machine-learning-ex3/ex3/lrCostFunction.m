@@ -43,9 +43,9 @@ g = 1 ./ (1 + exp(-z)); %sigmoid
 
 h = g;
 
-J = 1 / m * ( \
-    (-log(h) + (log(1 - h)))' * y \
-    + (-log(1 - h))' * ones(size(X, 1), 1) \
+J = 1 / m * (  ...
+    (-log(h) + (log(1 - h)))' * y ...
+    + (-log(1 - h))' * ones(size(X, 1), 1)  ...
   );
 
 tmp_theta = theta;
@@ -54,7 +54,7 @@ tmp_theta(1 , 1) = 0; % theta0 が 0 の tmp_thetaを作る
 J = J + lambda / ( 2 * m ) * (tmp_theta' * tmp_theta); % theta0の分をひいとく
 
 
-grad = 1 / m * X' * (h - y)
+grad = 1 / m * X' * (h - y);
 
 grad_0 = grad(1, 1);
 grad = grad + lambda / m * theta;
