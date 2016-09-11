@@ -87,6 +87,27 @@ J += lambda / (2 * m) * ( ...
 );
 
 
+%y_for_grad = zeros(size(y, 1), num_labels);
+y_for_grad = zeros(num_labels, size(y, 1));
+
+for i = 1:size(y, 1)
+  for k = 1:num_labels
+    if y(i, 1) == k
+      y_for_grad(k, i) = 1;
+    end
+  end
+end
+
+
+Delta_3 = sigmoid(z3') - y_for_grad;
+
+Delta_2 = Theta2' * Delta_3 .* (sigmoidGradient( [ ones(size(z2, 1), 1) z2 ]' ));
+Delta_2 = Delta_2(2:end, :);
+
+
+% 数式通りでない
+Theta2_grad = 1 / m * Delta_3 * (a2')';
+Theta1_grad = 1 / m * Delta_2 * (a1')';
 
 
 % -------------------------------------------------------------
