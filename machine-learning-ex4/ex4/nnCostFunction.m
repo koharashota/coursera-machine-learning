@@ -79,6 +79,13 @@ for k = 1:num_labels
   );
 end
 
+% regularizeする
+
+J += lambda / (2 * m) * ( ...
+  sum(sum(Theta1 .* Theta1),2) + sum(sum(Theta2 .* Theta2),2) ...
+  - sum(sum(Theta1(:,1) .* Theta1(:,1)),2) - sum(sum(Theta2(:,1) .* Theta2(:,1)),2) ...
+);
+
 
 
 
